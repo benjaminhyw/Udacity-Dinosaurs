@@ -89,6 +89,9 @@ const compareButtonHandler = (event) => {
   const humanObject = createHumanObject(getFormData());
   console.log(humanObject);
   console.log(dinoObjects);
+
+  const form = document.getElementById("dino-compare");
+  form.style.display = "none";
 };
 const compareButton = document.getElementById("btn");
 compareButton.addEventListener("click", compareButtonHandler);
