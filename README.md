@@ -2,7 +2,7 @@
 
 ## How to run
 
-1. Clone repo locally
+1. Clone repo
 
 2. Install node dependencies
 
