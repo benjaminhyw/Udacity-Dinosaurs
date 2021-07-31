@@ -1,5 +1,21 @@
 # Object Oriented Javascript
 
+## How to run
+
+1. Clone repo locally
+
+2. Install node dependencies
+
+```shell
+yarn
+```
+
+3. Start local environment:
+
+```shell
+yarn start
+```
+
 ## Student Instructions
 
 ### Big Picture
