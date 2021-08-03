@@ -83,10 +83,22 @@ const generateTiles = () => {
   console.log(dinoObjects);
 
   dinoObjects.forEach((dinoObject) => {
-    const { species, fact } = dinoObject;
+    const { species, weight, height, diet, where, when, fact } = dinoObject;
+    const dinoFacts = [
+      `Average weight: ${weight} lbs`,
+      `Average height: ${height} inches`,
+      `Diet: ${diet}`,
+      `This species existed in ${where}`,
+      `This species existed in the ${when} time period`,
+    ];
+
     const dinoTile = document.createElement("div");
     dinoTile.className = "grid-item";
-    dinoTile.innerHTML = `<h3>${species}</h3><img src='./images/${species.toLowerCase()}.png' /><p>${fact}</p>`;
+    dinoTile.innerHTML = `<h3>${species}</h3><img src='./images/${species.toLowerCase()}.png' /><p>${
+      species === "Pigeon"
+        ? fact
+        : dinoFacts[Math.floor(Math.random() * dinoFacts.length)]
+    }</p>`;
 
     tileObjects.push(dinoTile);
   });
@@ -127,7 +139,6 @@ const addTilesToDom = () => {
 
 // Remove form from screen
 const hideForm = () => {
-  // const formElement = document.getElementById("dino-compare");
   formElement.style.display = "none";
 };
 
