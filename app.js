@@ -2,7 +2,7 @@ const formElement = document.getElementById("dino-compare");
 const formName = "human-form";
 formElement.name = formName;
 const dinoObjects = [];
-const tileObjects = [];
+let tileObjects = [];
 
 // Load JSON Data
 function loadJSON(callback) {
@@ -103,6 +103,12 @@ const generateTiles = () => {
 
     tileObjects.push(dinoTile);
   });
+
+  // Shuffle the tileObjects array
+  tileObjects = tileObjects
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
   const humanTile = document.createElement("div");
   humanTile.className = "grid-item";
