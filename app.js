@@ -1,4 +1,5 @@
 const dinoObjects = [];
+const tileObjects = [];
 
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
@@ -82,23 +83,31 @@ const generateTiles = () => {
   console.log(humanObject);
   console.log(dinoObjects);
 
-  const tileObjects = [...dinoObjects];
+  dinoObjects.forEach((dinoObject) => {
+    const dinoTile = document.createElement("div");
+    dinoTile.className = "grid-item";
+    dinoTile.innerHTML = `<h3>${dinoObject.species}</h3>`;
+
+    tileObjects.push(dinoTile);
+  });
+
+  const humanTile = document.createElement("div");
+  humanTile.className = "grid-item";
+  humanTile.innerHTML = `<h3>${humanObject.name}</h3>`;
+
   // BEFLORE NOTE: 4 is hardcoded middle index.
   // NOTE Cont'd: Refactor so there is no hardcoded index
   // ALSO: This should happen AFTER DinoTiles have been generated, and we push in a human tile in the middle instead of object
-  tileObjects.splice(4, 0, humanObject);
-  const gridNode = document.getElementById("grid");
-
-  tileObjects.forEach((tileObject) => {
-    const htmlNode = document.createElement("div");
-    htmlNode.className = "grid-item";
-    htmlNode.innerHTML = `<h3>${tileObject.species}</h3>`;
-
-    gridNode.appendChild(htmlNode);
-  });
+  tileObjects.splice(4, 0, humanTile);
 };
 
 // Add tiles to DOM
+const addTilesToDom = () => {
+  const gridNode = document.getElementById("grid");
+  tileObjects.forEach((tileObject) => {
+    gridNode.appendChild(tileObject);
+  });
+};
 
 // Remove form from screen
 const hideForm = () => {
@@ -110,6 +119,7 @@ const hideForm = () => {
 const compareButtonHandler = (event) => {
   console.log("Button was clicked");
   generateTiles();
+  addTilesToDom();
   hideForm();
 };
 const compareButton = document.getElementById("btn");
