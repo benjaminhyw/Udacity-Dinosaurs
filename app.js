@@ -82,7 +82,9 @@ const generateTiles = () => {
   dinoObjects.forEach((dinoObject) => {
     const dinoTile = document.createElement("div");
     dinoTile.className = "grid-item";
-    dinoTile.innerHTML = `<h3>${dinoObject.species}</h3>`;
+    dinoTile.innerHTML = `<h3>${
+      dinoObject.species
+    }</h3><img src='./images/${dinoObject.species.toLowerCase()}.png' />`;
 
     tileObjects.push(dinoTile);
   });
