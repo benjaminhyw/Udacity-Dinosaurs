@@ -34,16 +34,12 @@ function Human(humanData) {
 }
 
 // Create Dino Objects
-// BEFLORE TODO: Rename
-loadJSON(
-  // BEFLORE TODO: Below should not be an anonyomus function, create function for it instead
-  (text) => {
-    const dinos = JSON.parse(text).Dinos;
-    dinos.forEach((dinoObject) => {
-      dinoObjects.push(new Dinosaur(dinoObject));
-    });
-  }
-);
+loadJSON((text) => {
+  const dinos = JSON.parse(text).Dinos;
+  dinos.forEach((dinoObject) => {
+    dinoObjects.push(new Dinosaur(dinoObject));
+  });
+});
 
 // Create Human Object
 const createHumanObject = (formData) => {
@@ -60,11 +56,11 @@ const getFormData = () =>
     const diet = document.getElementById("diet").value;
 
     return {
-      name: name,
-      feet: feet,
-      inches: inches,
-      weight: weight,
-      diet: diet,
+      name,
+      feet,
+      inches,
+      weight,
+      diet,
     };
   })();
 
