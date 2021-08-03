@@ -77,21 +77,40 @@ const getFormData = () =>
 // NOTE: Weight in JSON file is in lbs, height in inches.
 
 // Generate Tiles for each Dino in Array
-
-// Add tiles to DOM
-
-// Remove form from screen
-
-// On button click, prepare and display infographic
-const compareButtonHandler = (event) => {
-  console.log("Button was clicked");
-
+const generateTiles = () => {
   const humanObject = createHumanObject(getFormData());
   console.log(humanObject);
   console.log(dinoObjects);
 
+  const tileObjects = [...dinoObjects];
+  // BEFLORE NOTE: 4 is hardcoded middle index.
+  // NOTE Cont'd: Refactor so there is no hardcoded index
+  // ALSO: This should happen AFTER DinoTiles have been generated, and we push in a human tile in the middle instead of object
+  tileObjects.splice(4, 0, humanObject);
+  const gridNode = document.getElementById("grid");
+
+  tileObjects.forEach((tileObject) => {
+    const htmlNode = document.createElement("div");
+    htmlNode.className = "grid-item";
+    htmlNode.innerHTML = `<h3>${tileObject.species}</h3>`;
+
+    gridNode.appendChild(htmlNode);
+  });
+};
+
+// Add tiles to DOM
+
+// Remove form from screen
+const hideForm = () => {
   const form = document.getElementById("dino-compare");
   form.style.display = "none";
+};
+
+// On button click, prepare and display infographic
+const compareButtonHandler = (event) => {
+  console.log("Button was clicked");
+  generateTiles();
+  hideForm();
 };
 const compareButton = document.getElementById("btn");
 compareButton.addEventListener("click", compareButtonHandler);
