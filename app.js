@@ -93,7 +93,6 @@ const generateTiles = () => {
 
   // BEFLORE NOTE: 4 is hardcoded middle index.
   // NOTE Cont'd: Refactor so there is no hardcoded index
-  // ALSO: This should happen AFTER DinoTiles have been generated, and we push in a human tile in the middle instead of object
   tileObjects.splice(4, 0, humanTile);
 };
 
