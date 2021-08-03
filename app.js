@@ -1,9 +1,10 @@
-const dinoObjects = [];
-const tileObjects = [];
 const formElement = document.getElementById("dino-compare");
 const formName = "human-form";
 formElement.name = formName;
+const dinoObjects = [];
+const tileObjects = [];
 
+// Load JSON Data
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
@@ -76,7 +77,7 @@ const getFormData = () =>
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
 
-// Generate Tiles for each Dino in Array
+// Generate Tiles
 const generateTiles = () => {
   const humanObject = createHumanObject(getFormData());
   console.log(humanObject);
