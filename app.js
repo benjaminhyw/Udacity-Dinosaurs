@@ -1,5 +1,8 @@
 const dinoObjects = [];
 const tileObjects = [];
+const formElement = document.getElementById("dino-compare");
+const formName = "human-form";
+formElement.name = formName;
 
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
@@ -97,6 +100,23 @@ const generateTiles = () => {
   tileObjects.splice(4, 0, humanTile);
 };
 
+// Validate form
+const isFormValid = () => {
+  const form = document.forms[formName];
+  const name = form.name.value.trim();
+  const feet = form.feet.value.trim();
+  const inches = form.inches.value.trim();
+  const weight = form.weight.value.trim();
+  const diet = form.diet.value.trim();
+
+  if (!name || !feet || !inches || !weight || !diet) {
+    alert("Form is not complete - Please fill out all fields then try again!");
+    return false;
+  }
+
+  return true;
+};
+
 // Add tiles to DOM
 const addTilesToDom = () => {
   const gridNode = document.getElementById("grid");
@@ -107,16 +127,19 @@ const addTilesToDom = () => {
 
 // Remove form from screen
 const hideForm = () => {
-  const form = document.getElementById("dino-compare");
-  form.style.display = "none";
+  // const formElement = document.getElementById("dino-compare");
+  formElement.style.display = "none";
 };
 
 // On button click, prepare and display infographic
 const compareButtonHandler = (event) => {
   console.log("Button was clicked");
-  generateTiles();
-  addTilesToDom();
-  hideForm();
+  console.log(event);
+  if (isFormValid()) {
+    generateTiles();
+    addTilesToDom();
+    hideForm();
+  }
 };
 const compareButton = document.getElementById("btn");
 compareButton.addEventListener("click", compareButtonHandler);
