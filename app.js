@@ -3,6 +3,7 @@ const formName = "human-form";
 formElement.name = formName;
 const dinoObjects = [];
 let tileObjects = [];
+let humanObject = {};
 
 // Load JSON Data
 function loadJSON(callback) {
@@ -69,17 +70,23 @@ const getFormData = () =>
   })();
 
 // Create Dino Compare Method 1
-// NOTE: Weight in JSON file is in lbs, height in inches.
+Dinosaur.prototype.compareDiet = function () {
+  return `The ${this.species} was a ${this.diet}, ${
+    this.diet === humanObject.diet ? "just like you!" : "unlike you!"
+  }`;
+};
 
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
+Dinosaur.prototype.compareHeight = function () {};
 
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
+Dinosaur.prototype.compareWeight = function () {};
 
 // Generate Tiles
 const generateTiles = () => {
-  const humanObject = createHumanObject(getFormData());
+  humanObject = createHumanObject(getFormData());
   console.log(humanObject);
   console.log(dinoObjects);
 
@@ -88,7 +95,7 @@ const generateTiles = () => {
     const dinoFacts = [
       `Average weight: ${weight} lbs`,
       `Average height: ${height} inches`,
-      `Diet: ${diet}`,
+      dinoObject.compareDiet(),
       `This species existed in ${where}`,
       `This species existed in the ${when} time period`,
     ];
