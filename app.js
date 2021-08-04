@@ -56,10 +56,10 @@ const createHumanObject = (formData) => {
 const getFormData = () =>
   (function () {
     const name = document.getElementById("name").value;
-    const feet = document.getElementById("feet").value;
-    const inches = document.getElementById("inches").value;
-    const weight = document.getElementById("weight").value;
-    const diet = document.getElementById("diet").value;
+    const feet = Number(document.getElementById("feet").value);
+    const inches = Number(document.getElementById("inches").value);
+    const weight = Number(document.getElementById("weight").value);
+    const diet = document.getElementById("diet").value.toLowerCase();
 
     return {
       name,
@@ -78,7 +78,6 @@ Dinosaur.prototype.compareDiet = function () {
 };
 
 // Create Dino Compare Method 2
-// NOTE: Weight in JSON file is in lbs, height in inches.
 Dinosaur.prototype.compareHeight = function () {
   let heightComparisonFact;
 
@@ -94,13 +93,27 @@ Dinosaur.prototype.compareHeight = function () {
     heightComparisonFact = "You are identical in height.";
   }
 
-  return `The average ${this.species} was ${this.height} inches tall.  ${heightComparisonFact}`;
+  return `This ${this.species} was ${this.height} inches tall.  ${heightComparisonFact}`;
 };
 
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
 Dinosaur.prototype.compareWeight = function () {
-  let weightFact;
+  let weightComparisonFact;
+
+  if (this.weight > humanObject.weight) {
+    weightComparisonFact = `That's ${
+      this.weight - humanObject.weight
+    } lbs heavier than you!`;
+  } else if (this.weight < humanObject.weight) {
+    weightComparisonFact = `That means you are heavier by ${
+      humanObject.weight - this.weight
+    }lbs!`;
+  } else if (this.weight === humanObject.weight) {
+    weightComparisonFact = "You weigh the same.";
+  }
+
+  return `This ${this.species} was ${this.weight} lbs.  ${weightComparisonFact}`;
 };
 
 // Generate Tiles
@@ -110,13 +123,14 @@ const generateTiles = () => {
   console.log(dinoObjects);
 
   dinoObjects.forEach((dinoObject) => {
-    const { species, weight, height, diet, where, when, fact } = dinoObject;
+    const { species, where, when, fact } = dinoObject;
     const dinoFacts = [
-      `Average weight: ${weight} lbs`,
+      dinoObject.compareWeight(),
       dinoObject.compareHeight(),
       dinoObject.compareDiet(),
       `This species existed in ${where}`,
       `This species existed in the ${when} time period`,
+      fact,
     ];
 
     const dinoTile = document.createElement("div");
