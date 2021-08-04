@@ -34,6 +34,7 @@ function Human(humanData) {
   this.name = humanData.name;
   this.feet = humanData.feet;
   this.inches = humanData.inches;
+  this.heightInInches = humanData.feet * 12 + humanData.inches;
   this.weight = humanData.weight;
   this.diet = humanData.diet;
 }
@@ -78,11 +79,29 @@ Dinosaur.prototype.compareDiet = function () {
 
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
-Dinosaur.prototype.compareHeight = function () {};
+Dinosaur.prototype.compareHeight = function () {
+  let heightComparisonFact;
+
+  if (this.height > humanObject.heightInInches) {
+    heightComparisonFact = `That's ${
+      this.height - humanObject.heightInInches
+    } inches taller than you!`;
+  } else if (this.height < humanObject.heightInInches) {
+    heightComparisonFact = `That means you are taller by ${
+      humanObject.heightInInches - this.height
+    } inches!`;
+  } else if (this.height === humanObject.heightInInches) {
+    heightComparisonFact = "You are identical in height.";
+  }
+
+  return `The average ${this.species} was ${this.height} inches tall.  ${heightComparisonFact}`;
+};
 
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
-Dinosaur.prototype.compareWeight = function () {};
+Dinosaur.prototype.compareWeight = function () {
+  let weightFact;
+};
 
 // Generate Tiles
 const generateTiles = () => {
@@ -94,7 +113,7 @@ const generateTiles = () => {
     const { species, weight, height, diet, where, when, fact } = dinoObject;
     const dinoFacts = [
       `Average weight: ${weight} lbs`,
-      `Average height: ${height} inches`,
+      dinoObject.compareHeight(),
       dinoObject.compareDiet(),
       `This species existed in ${where}`,
       `This species existed in the ${when} time period`,
