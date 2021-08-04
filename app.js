@@ -151,7 +151,7 @@ const generateTiles = () => {
 
   const humanTile = document.createElement("div");
   humanTile.className = "grid-item";
-  humanTile.innerHTML = `<h3>${humanObject.name}</h3>`;
+  humanTile.innerHTML = `<h3>${humanObject.name}</h3><img src='./images/human.png' />`;
 
   // BEFLORE NOTE: 4 is hardcoded middle index.
   // NOTE Cont'd: Refactor so there is no hardcoded index
