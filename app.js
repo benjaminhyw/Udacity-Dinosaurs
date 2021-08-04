@@ -97,7 +97,6 @@ Dinosaur.prototype.compareHeight = function () {
 };
 
 // Create Dino Compare Method 3
-// NOTE: Weight in JSON file is in lbs, height in inches.
 Dinosaur.prototype.compareWeight = function () {
   let weightComparisonFact;
 
