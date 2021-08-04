@@ -66,7 +66,7 @@ const getFormData = () =>
       feet,
       inches,
       weight,
-      diet,
+      diet
     };
   })();
 
@@ -127,7 +127,7 @@ const generateTiles = () => {
       dinoObject.compareDiet(),
       `This species existed in ${where}`,
       `This species existed in the ${when} time period`,
-      fact,
+      fact
     ];
 
     const dinoTile = document.createElement("div");
