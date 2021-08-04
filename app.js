@@ -118,8 +118,6 @@ Dinosaur.prototype.compareWeight = function () {
 // Generate Tiles
 const generateTiles = () => {
   humanObject = createHumanObject(getFormData());
-  console.log(humanObject);
-  console.log(dinoObjects);
 
   dinoObjects.forEach((dinoObject) => {
     const { species, where, when, fact } = dinoObject;
@@ -190,8 +188,6 @@ const hideForm = () => {
 
 // On button click, prepare and display infographic
 const compareButtonHandler = (event) => {
-  console.log("Button was clicked");
-  console.log(event);
   if (isFormValid()) {
     generateTiles();
     addTilesToDom();
